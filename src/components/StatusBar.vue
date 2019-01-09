@@ -11,6 +11,3 @@ export default {
   props: ["turns", "matches"]
 };
 </script>
-
-<style>
-</style>

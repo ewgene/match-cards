@@ -73,6 +73,8 @@ import CardsBoard from "./components/CardsBoard";
 import StatusBar from "./components/StatusBar";
 import Timer from "./components/Timer";
 import Splash from "./components/Splash";
+import _ from "lodash";
+import moment from "moment";
 
 export default {
   name: "App",
@@ -110,7 +112,7 @@ export default {
       this.matches = 0;
       this.showSplash = false;
       this.score = 0;
-      
+
       let cards = shuffleCards();
 
       _.each(cards, card => {
@@ -143,6 +145,15 @@ export default {
       if (foundCards.length == this.cards.length) return true;
     },
 
+    clearFlips() {
+      _.map(this.cards, card => (card.flipped = false));
+    },
+
+    clearFlipBackTimer() {
+      clearTimeout(this.flipBackTimer);
+      this.flipBackTimer = null;
+    },
+
     startGame() {
       this.started = true;
       let duration = this.duration;
@@ -159,12 +170,12 @@ export default {
     finishGame() {
       this.started = false;
       clearInterval(this.timer);
-      this.score = (Math.round(this.progress) * 10) * this.matches;
-      
+      this.score = Math.round(this.progress) * 10 * this.matches;
+
       if (this.matches == cardsSet.length) {
         this.result = "Win";
       } else {
-        this.result = "Lose"
+        this.result = "Lose";
       }
 
       this.showSplash = true;
@@ -202,16 +213,7 @@ export default {
           }, 1000);
         }
       }
-    },
-
-    clearFlips() {
-      _.map(this.cards, card => (card.flipped = false));
-    },
-
-    clearFlipBackTimer() {
-      clearTimeout(this.flipBackTimer);
-      this.flipBackTimer = null;
     }
-  },
+  }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-flex xs8 offset-xs2>
+    <v-flex xs12 sm10 offset-sm1 lg8 offset-lg2>
       <v-card>
         <div class="flex-container">
           <div
@@ -40,8 +40,14 @@ export default {
   position: relative;
   width: 100px;
   height: 150px;
-  margin: 0.5em;
+  margin: 1px;
   transition: opacity 0.5s;
+}
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 50px;
+    height: 75px;
+  }
 }
 .card .front,
 .card .back {

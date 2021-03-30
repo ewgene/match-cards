@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: '/match-pairs/'
+  publicPath: '/match-pairs/'
 }
